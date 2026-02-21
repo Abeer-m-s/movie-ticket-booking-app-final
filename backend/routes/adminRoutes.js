@@ -8,11 +8,11 @@ const { auth, authorizeRoles } = require("../middleware/authMiddleware");
 
 // ✅ Admin Dashboard
 router.get(
-  "/dashboard",
+  "/check-admin",
   auth,
   authorizeRoles("admin"),
   (req, res) => {
-    res.json({ message: "Welcome Admin" });
+    res.json({ message: "Admin verified" });
   }
 );
 
