@@ -33,6 +33,12 @@ app.use("/api/shows", require("./routes/showRoutes"));
 // Booking Routes
 app.use("/api/bookings", require("./routes/bookingRoutes"));
 
+//theatre Routes
+app.use("/api/theatres", require("./routes/theatreRoutes"));
+
+// seat Routes
+app.use("/api/seats", require("./routes/seatRoutes"));
+
 // ==========================================
 
 // Root Route
@@ -49,4 +55,10 @@ app.post("/test", (req, res) => {
 
 app.listen(PORT, () => {
   console.log(`🚀 Server running on port ${PORT}`);
+});
+app.use((err, req, res, next) => {
+  console.error(err.stack);
+  res.status(500).json({
+    message: "Something went wrong"
+  });
 });

@@ -1,28 +1,15 @@
 const express = require("express");
 const router = express.Router();
 
-// Create Booking
 const { auth, authorizeRoles } = require("../middleware/authMiddleware");
+const { createBooking } = require("../controllers/bookingController");
 
-const createBookingController = (req, res) => {
-  res.json({ message: "Ticket booked successfully" });
-};
-
+// Only user can book tickets
 router.post(
   "/",
   auth,
   authorizeRoles("user"),
-  createBookingController
+  createBooking
 );
-
-// Get User Bookings
-router.get("/my-bookings", (req, res) => {
-  res.send("My Bookings");
-});
-
-// Cancel Booking
-router.delete("/:id", (req, res) => {
-  res.send("Cancel Booking");
-});
 
 module.exports = router;
