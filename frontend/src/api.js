@@ -1,4 +1,4 @@
-const API_BASE = 'https://movie-ticket-booking-app-final.onrender.com';
+const API_BASE = 'https://movie-ticket-booking-app-final.onrender.com/api';
 
 function getToken() {
   return localStorage.getItem('token');
