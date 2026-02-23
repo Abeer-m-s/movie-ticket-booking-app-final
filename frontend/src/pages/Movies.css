@@ -1,0 +1,132 @@
+.movies-page {
+  min-height: 100vh;
+  background: #0a0812;
+  padding-top: 70px;
+}
+
+.booking-success {
+  background: rgba(76, 175, 80, 0.2);
+  color: #81c784;
+  padding: 1rem;
+  border-radius: 8px;
+  margin-bottom: 1.5rem;
+  text-align: center;
+}
+
+.movies-content {
+  padding: 2rem 3rem;
+  max-width: 1600px;
+  margin: 0 auto;
+}
+
+.movies-loading,
+.movies-empty {
+  text-align: center;
+  color: rgba(255, 255, 255, 0.8);
+  padding: 4rem;
+  font-size: 1.1rem;
+}
+
+.movies-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  gap: 2rem;
+}
+
+.movie-card {
+  position: relative;
+  border-radius: 12px;
+  overflow: hidden;
+  aspect-ratio: 2/3;
+  cursor: pointer;
+  transition: transform 0.3s;
+}
+
+.movie-card:hover {
+  transform: scale(1.03);
+}
+
+.movie-poster {
+  position: absolute;
+  inset: 0;
+  background-size: cover;
+  background-position: center;
+  transition: transform 0.5s;
+}
+
+.movie-card:hover .movie-poster {
+  transform: scale(1.08);
+}
+
+.movie-overlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    180deg,
+    transparent 0%,
+    rgba(10, 8, 18, 0.3) 40%,
+    rgba(10, 8, 18, 0.95) 100%
+  );
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  padding: 1.5rem;
+  opacity: 0.9;
+}
+
+.movie-genre {
+  font-size: 0.7rem;
+  font-weight: 700;
+  letter-spacing: 0.15em;
+  color: #ff6b6b;
+  margin-bottom: 0.5rem;
+}
+
+.movie-title {
+  color: #fff;
+  font-size: 1.4rem;
+  font-weight: 700;
+  margin: 0 0 0.5rem 0;
+}
+
+.movie-meta {
+  display: flex;
+  gap: 0.75rem;
+  color: rgba(255, 255, 255, 0.7);
+  font-size: 0.85rem;
+  margin-bottom: 0.5rem;
+}
+
+.movie-meta span::before {
+  content: '•';
+  margin-right: 0.5rem;
+}
+
+.movie-meta span:first-child::before {
+  content: none;
+}
+
+.movie-desc {
+  color: rgba(255, 255, 255, 0.8);
+  font-size: 0.9rem;
+  margin: 0.5rem 0 1rem 0;
+  line-height: 1.4;
+}
+
+.btn-book {
+  align-self: flex-start;
+  padding: 0.7rem 1.5rem;
+  background: linear-gradient(135deg, #ff6b6b 0%, #ee5a5a 100%);
+  color: white;
+  border: none;
+  border-radius: 4px;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  cursor: pointer;
+  transition: transform 0.2s, box-shadow 0.2s;
+}
+
+.btn-book:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 20px rgba(255, 107, 107, 0.5);
+}

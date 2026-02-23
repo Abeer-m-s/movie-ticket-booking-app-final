@@ -1,0 +1,152 @@
+.movie-detail-page {
+  min-height: 100vh;
+  background: #0a0812;
+  padding-top: 70px;
+}
+
+.movie-detail-loading {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: rgba(255, 255, 255, 0.8);
+}
+
+.movie-detail-hero {
+  position: relative;
+  min-height: calc(100vh - 70px);
+  overflow: hidden;
+}
+
+.movie-detail-poster {
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: 70%;
+  height: 100%;
+  background-size: cover;
+  background-position: center right;
+}
+
+.movie-detail-overlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    90deg,
+    #0a0812 0%,
+    #0a0812 35%,
+    rgba(10, 8, 18, 0.85) 50%,
+    transparent 100%
+  );
+  z-index: 1;
+}
+
+.movie-detail-content {
+  position: relative;
+  z-index: 2;
+  max-width: 500px;
+  padding: 3rem 4rem;
+}
+
+.movie-detail-genres {
+  display: flex;
+  gap: 0.5rem;
+  margin-bottom: 1rem;
+}
+
+.genre-tag {
+  padding: 0.35rem 0.75rem;
+  background: rgba(255, 255, 255, 0.1);
+  color: rgba(255, 255, 255, 0.9);
+  font-size: 0.75rem;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  border-radius: 4px;
+}
+
+.movie-detail-title {
+  font-family: Georgia, serif;
+  font-size: 2.5rem;
+  font-weight: 700;
+  color: #fff;
+  margin: 0 0 0.5rem 0;
+}
+
+.movie-detail-meta {
+  display: flex;
+  gap: 1rem;
+  color: rgba(255, 255, 255, 0.8);
+  font-size: 0.95rem;
+  margin-bottom: 1rem;
+}
+
+.movie-detail-meta span::before {
+  content: '•';
+  margin-right: 0.5rem;
+}
+
+.movie-detail-meta span:first-child::before {
+  content: none;
+}
+
+.movie-detail-synopsis {
+  color: rgba(255, 255, 255, 0.9);
+  line-height: 1.6;
+  margin-bottom: 1.5rem;
+}
+
+.movie-detail-actions {
+  display: flex;
+  gap: 1rem;
+  margin-bottom: 2rem;
+}
+
+.btn-trailer {
+  padding: 0.7rem 1.25rem;
+  background: transparent;
+  color: #fff;
+  border: 2px solid #ff6b6b;
+  border-radius: 4px;
+  font-weight: 600;
+  letter-spacing: 0.1em;
+  cursor: not-allowed;
+  opacity: 0.7;
+}
+
+.btn-book-now {
+  padding: 0.7rem 1.5rem;
+  background: linear-gradient(135deg, #ff6b6b 0%, #ee5a5a 100%);
+  color: white;
+  border: none;
+  border-radius: 4px;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  cursor: pointer;
+  transition: transform 0.2s, box-shadow 0.2s;
+}
+
+.btn-book-now:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 20px rgba(255, 107, 107, 0.5);
+}
+
+.movie-detail-ratings {
+  display: flex;
+  gap: 2rem;
+}
+
+.rating-item {
+  display: flex;
+  flex-direction: column;
+}
+
+.rating-value {
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: #fff;
+}
+
+.rating-label {
+  font-size: 0.8rem;
+  color: rgba(255, 255, 255, 0.6);
+}
