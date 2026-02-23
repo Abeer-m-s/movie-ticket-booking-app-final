@@ -16,21 +16,9 @@ An anime-themed movie ticket booking web app with a dark, vibrant aesthetic.
 - **Backend**: Node.js, Express, MongoDB, Mongoose
 - **Auth**: JWT + bcryptjs
 
-## Setup
-
-1. Install backend deps: `cd backend && npm install`
-2. Create `backend/.env` with:
-   ```
-   MONGO_URI=your_mongodb_connection_string
-   JWT_SECRET=your_jwt_secret
-   ```
-3. Seed sample data: `npm run seed`
-4. Start backend: `npm run dev:backend` (port 5000)
-5. Start frontend: `npm run dev:frontend` (port 5173)
-
 ## Usage
 
-1. Open http://localhost:5173
+1. Open ANIMOV
 2. Use **Login** in the navbar, or **Get Started** on the landing page
 3. Sign up if needed, then log in
 4. Browse movies and click **Book Now**
