@@ -10,9 +10,13 @@ export async function login(email, password) {
     headers: { 'Content-Type': 'application/json' },
     body: JSON.stringify({ email, password }),
   });
-  const data = await res.json();
-  if (!res.ok) throw new Error(data.message || 'Login failed');
-  return data;
+
+  if (!res.ok) {
+    const text = await res.text(); // get raw response
+    throw new Error(text || 'Login failed');
+  }
+
+  return res.json();
 }
 
 export async function signup(name, email, password) {
