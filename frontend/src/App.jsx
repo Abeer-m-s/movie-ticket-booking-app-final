@@ -6,6 +6,7 @@ import MovieDetail from './pages/MovieDetail';
 import Theatres from './pages/Theatres';
 import Seating from './pages/Seating';
 import Payment from './pages/Payment';
+import Admin from './pages/Admin';
 
 export default function App() {
   return (
@@ -17,6 +18,7 @@ export default function App() {
       <Route path="/theatres/:movieId" element={<Theatres />} />
       <Route path="/seats/:showId" element={<Seating />} />
       <Route path="/payment/:showId" element={<Payment />} />
+      <Route path="/admin" element={<Admin />} />
       <Route path="*" element={<Navigate to="/" replace />} />
     </Routes>
   );

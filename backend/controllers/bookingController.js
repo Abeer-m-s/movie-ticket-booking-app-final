@@ -2,6 +2,7 @@ const Booking = require("../models/Booking");
 const Seat = require("../models/Seat");
 const Show = require("../models/Show");
 const Payment = require("../models/Payment");
+const { sendBookingConfirmationEmail } = require("../utils/email");
 
 exports.createBooking = async (req, res) => {
   try {
@@ -48,12 +49,30 @@ exports.createBooking = async (req, res) => {
     });
 
     // 5️⃣ Create payment
-    await Payment.create({
+    const payment = await Payment.create({
       booking: booking._id,
       method: paymentMethod || "card",
       paymentStatus: "completed",
       transactionId: "TXN" + Date.now()
     });
+
+    // 6️⃣ Send ticket email (non-blocking for failure)
+    try {
+      const fullBooking = await Booking.findById(booking._id)
+        .populate("user", "name email")
+        .populate({
+          path: "show",
+          populate: [
+            { path: "movie", select: "title language duration" },
+            { path: "theatre", select: "name location" }
+          ]
+        })
+        .populate("seats", "seatNumber seatType");
+
+      await sendBookingConfirmationEmail(fullBooking, payment);
+    } catch (emailError) {
+      console.error("Failed to send booking confirmation email:", emailError);
+    }
 
     res.status(201).json({
       message: "Booking successful",

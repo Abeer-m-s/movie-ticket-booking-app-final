@@ -2,6 +2,7 @@ const express = require("express");
 const router = express.Router();
 
 const User = require("../models/User");
+const Booking = require("../models/Booking");
 const bcrypt = require("bcryptjs");
 
 const { auth, authorizeRoles } = require("../middleware/authMiddleware");
@@ -40,6 +41,32 @@ router.post(
         manager
       });
 
+    } catch (error) {
+      res.status(500).json({ message: error.message });
+    }
+  }
+);
+
+// ✅ Get all bookings with user + movie + theatre + seats (Admin Only)
+router.get(
+  "/bookings",
+  auth,
+  authorizeRoles("admin"),
+  async (_req, res) => {
+    try {
+      const bookings = await Booking.find()
+        .sort({ createdAt: -1 })
+        .populate("user", "name email")
+        .populate({
+          path: "show",
+          populate: [
+            { path: "movie", select: "title" },
+            { path: "theatre", select: "name location" }
+          ]
+        })
+        .populate("seats", "seatNumber seatType");
+
+      res.json(bookings);
     } catch (error) {
       res.status(500).json({ message: error.message });
     }

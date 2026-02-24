@@ -4,11 +4,13 @@
  */
 require("dotenv").config();
 const mongoose = require("mongoose");
+const bcrypt = require("bcryptjs");
 const connectDB = require("./config/db");
 const Movie = require("./models/Movie");
 const Theatre = require("./models/Theatre");
 const Show = require("./models/Show");
 const Seat = require("./models/Seat");
+const User = require("./models/User");
 
 connectDB();
 
@@ -118,7 +120,25 @@ async function seed() {
       }
     }
 
-    console.log("✅ Seed complete: movies, theatres, shows, and seats created.");
+    // Ensure default admin user exists
+    const adminEmail = "admin@gmail.com";
+    const adminPassword = "123456";
+
+    const existingAdmin = await User.findOne({ email: adminEmail });
+    if (!existingAdmin) {
+      const hashed = await bcrypt.hash(adminPassword, 10);
+      await User.create({
+        name: "Admin",
+        email: adminEmail,
+        password: hashed,
+        role: "admin",
+      });
+      console.log("✅ Default admin user created (admin@gmail.com / 123456)");
+    } else {
+      console.log("ℹ️ Admin user already exists, skipping create");
+    }
+
+    console.log("✅ Seed complete: movies, theatres, shows, seats, and admin user ready.");
     process.exit(0);
   } catch (err) {
     console.error("Seed error:", err);

@@ -30,7 +30,12 @@ const movieSchema = new mongoose.Schema({
 
   description: String,
 
-  poster: String
+  poster: String,
+
+  trailerUrl: {
+    type: String,
+    default: ""
+  }
 
 }, { timestamps: true });
 module.exports = mongoose.model("Movie", movieSchema);

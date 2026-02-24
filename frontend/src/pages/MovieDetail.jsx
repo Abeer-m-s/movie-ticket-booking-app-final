@@ -47,6 +47,12 @@ export default function MovieDetail() {
 
   const posterUrl = getPosterForMovie(movie) || `https://picsum.photos/seed/${movie._id}/800/1200`;
   const genres = (movie.genre || 'Anime').split(',').map((g) => g.trim().toUpperCase());
+  const hasTrailer = !!movie.trailerUrl;
+
+  const handleTrailerClick = () => {
+    if (!hasTrailer) return;
+    window.open(movie.trailerUrl, '_blank', 'noopener,noreferrer');
+  };
 
   return (
     <div className="movie-detail-page">
@@ -73,7 +79,13 @@ export default function MovieDetail() {
             <p className="movie-detail-synopsis">{movie.description}</p>
           )}
           <div className="movie-detail-actions">
-            <button className="btn-trailer" disabled> TRAILER </button>
+            <button
+              className={`btn-trailer ${!hasTrailer ? 'btn-trailer-disabled' : ''}`}
+              onClick={handleTrailerClick}
+              disabled={!hasTrailer}
+            >
+              TRAILER
+            </button>
             <button
               className="btn-book-now"
               onClick={() => navigate(`/theatres/${movie._id}`)}
