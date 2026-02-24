@@ -24,6 +24,9 @@ export default function Navbar() {
                 ADMIN
               </Link>
             )}
+            <Link to="/my-bookings" className="nav-link">
+              MY TICKETS
+            </Link>
             <span className="nav-username">Hi, {user.role}</span>
             <button className="btn-logout" onClick={handleLogout}>Logout</button>
           </div>

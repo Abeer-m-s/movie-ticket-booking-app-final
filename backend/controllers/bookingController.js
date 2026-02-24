@@ -83,3 +83,24 @@ exports.createBooking = async (req, res) => {
     res.status(500).json({ message: error.message });
   }
 };
+
+// Get bookings for logged-in user
+exports.getMyBookings = async (req, res) => {
+  try {
+    const bookings = await Booking.find({ user: req.user.id })
+      .sort({ createdAt: -1 })
+      .populate("user", "name email")
+      .populate({
+        path: "show",
+        populate: [
+          { path: "movie", select: "title poster language duration rating" },
+          { path: "theatre", select: "name location" }
+        ]
+      })
+      .populate("seats", "seatNumber seatType");
+
+    res.json(bookings);
+  } catch (error) {
+    res.status(500).json({ message: error.message });
+  }
+};

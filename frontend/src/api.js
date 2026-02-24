@@ -68,6 +68,15 @@ export async function getSeatsByShow(showId) {
   return res.json();
 }
 
+export async function getMyBookings() {
+  const res = await fetch(`${API_BASE}/bookings/my`, {
+    headers: authHeaders(),
+  });
+  const data = await res.json();
+  if (!res.ok) throw new Error(data.message || 'Failed to fetch bookings');
+  return data;
+}
+
 // ======== ADMIN APIs ========
 
 export async function createMovie(movie) {
